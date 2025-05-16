@@ -1,5 +1,5 @@
 use borsh::{BorshDeserialize, BorshSerialize};
-use crosstown_bus::{CrosstownBus, MessageHandler, HandleError};
+use crosstown_bus::{CrosstownBus, HandleError, MessageHandler};
 use std::{thread, time};
 
 #[derive(Debug, Clone, BorshDeserialize, BorshSerialize)]
@@ -22,6 +22,10 @@ impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
             message
         );
         Ok(())
+    }
+
+    fn get_handler_action(&self) -> String {
+        "process_user_created".to_string()
     }
 }
 
