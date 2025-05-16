@@ -24,3 +24,9 @@ So when written as `amqp://guest:guest@localhost:5672`, it creates a connection 
 ![Image](https://github.com/user-attachments/assets/ad96d5b1-4b6d-4f0f-a92e-a20234b54434)
 
 The total number of queues is shown as 2, which reflects the number of active queues currently declared in your RabbitMQ instance. This number can vary depending on how many queues have been created by applications or services connected to RabbitMQ.
+
+## Reflection and Running at least three subscribers
+
+![Image](https://github.com/user-attachments/assets/3673adcf-3fe3-4aaa-8d1f-b369e4b20b1d)
+
+The message queue is drained faster with more subscribers because RabbitMQ distributes messages among all active consumers in a round-robin fashion. This parallel processing allows multiple messages to be handled simultaneously, reducing overall latency and backlog. From the code, one improvement could be adding message acknowledgment (ack) handling properly and making subscriber logic more efficient to avoid delays—especially if any subscriber is blocking. Also, adding retry or dead-letter logic might help in case a message fails to be processed.
